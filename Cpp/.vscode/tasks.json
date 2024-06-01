@@ -1,0 +1,80 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "-g",
+                //1. 헤더파일 포함하고 싶을 때
+                // "${fileDirname}/*.cpp",
+
+                //2. 그냥 파일만 컴파일하고 싶을 때
+                "${file}",
+                // ====================================================
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.o",
+                // "&&",
+                // "${fileDirname}/${fileBasenameNoExtension}.o"
+                
+                /*
+                "&&",   //to join building and running of the file
+                "${fileDirname}/${fileBasenameNoExtension}.out",
+                "<",
+                "${fileDirname}/sample_input.txt"
+                */
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {   //Explained in detail below
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "clear": false,
+                "showReuseMessage": false
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    //     { //build
+    //         "type": "shell",
+    //         "label": "gcc build active file",
+    //         "command": "/usr/bin/gcc",
+    //         "args": [
+    //             "-g",
+    //             "${file}",
+    //             "-o",
+    //             "${fileDirname}/${fileBasenameNoExtension}"
+    //         ],
+    //         "options": {
+    //             "cwd": "/usr/bin"
+    //         },
+    //         "problemMatcher": [
+    //             "$gcc"
+    //         ],
+    //         "group": {
+    //             "kind": "build",
+    //             "isDefault": true
+    //         },
+    //         "detail": "Debug"
+    //     },
+    //     { //Run
+    //         "type": "shell",
+    //         "label": "Run C source code",
+    //         "command": "./${fileBasenameNoExtension}",
+    //         "options": {
+    //             "cwd": "${fileDirname}"
+    //         },
+    //         "group": "test"
+    //     }
+    ],
+    "version": "2.0.0"
+}
